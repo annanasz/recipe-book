@@ -1,0 +1,41 @@
+<table class="table table-striped table-bordered">
+   <tr>
+      <th>
+         Név
+      </th>
+      <th>
+         Kategória
+      </th>
+      <th>
+         Ár/Adag
+      </th>
+      <th>
+         Kalória/Adag
+      </th>
+      <th>
+         &nbsp;
+      </th>
+   </tr>
+   <% for(let i=0;i<recipes.length;i++){ const recipe = recipes[i]; %> 
+   <tr>
+      <td>
+         <%= recipe.name %>
+      </td>
+      <td>
+         <%= recipe.category %>
+      </td>
+      <td>
+         <%= recipe.price %>
+      </td>
+      <td>
+         <%= recipe.calories %>
+      </td>
+      <td style="width:30px;white-space: nowrap">
+         <a href="/recept/<%= recipes[i].id %>/1" class="btn btn-sm btn-primary">Megnézem</a>
+         <a href="/recept/edit/<%= recipes[i].id %>" class="btn btn-sm btn-primary"><i
+            class="far fa-edit"></i></a>
+         <a href="/recept/delete/<%= recipes[i].id %>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+      </td>
+   </tr>
+   <% } %> 
+</table>

@@ -1,0 +1,34 @@
+<div class="container">
+   <div class="row">
+      <div class="col-12">
+         <% if(typeof alert != 'undefined') { %> 
+         <br>
+         <div class="alert alert-danger" role="alert">
+            Minden adatát add meg az új hozzávalónak!
+         </div>
+         <br>
+         <% } %>  
+         <br>
+         <h2> Alapanyag <%= (typeof ingredient==='undefined' || (typeof method!=='undefined')) ? "hozzáadás" : "módosítás" %></h2>
+         <br>
+         <form method="post">
+         <div class="form-group">
+            <label>Név:</label>
+            <input type="text" class="form-control" name="name" value="<%= typeof ingredient==='undefined'? '' : ingredient.name %>" >
+         </div>
+         <div class="form-group">
+            <label>Egység:</label>
+            <input type="text" class="form-control" name="unit" value="<%= typeof ingredient==='undefined'? '' : ingredient.unit %>">
+         </div>
+         <div class="form-group">
+            <label>Ár/Egység:</label>
+            <input type="number" class="form-control" name="price" value="<%= typeof ingredient==='undefined'? '' : ingredient.price %>">
+         </div>
+         <div class="form-group">
+            <label>Kalória/Egység:</label>
+            <input type="number" class="form-control" name="calories" value="<%= typeof ingredient==='undefined'? '' : ingredient.calories %>">
+         </div>
+         <br>
+      </div>
+   </div>
+</div>

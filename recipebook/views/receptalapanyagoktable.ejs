@@ -1,0 +1,27 @@
+<table class="table table-striped table-bordered">
+   <tr>
+      <th>
+         Név
+      </th>
+      <th>
+         Mennyiség
+      </th>
+      <th>
+         Egység
+      </th>
+   </tr>
+   <% let ingredientsize = (typeof allingredients === 'undefined' ? 0:allingredients.length); %>
+   <% for(let i=0;i<ingredientsize;i++){ const ingredient =allingredients[i]; %>  
+   <tr>
+      <td>
+         <%= ingredient.name %> 
+      </td>
+      <td>
+         <%= quantities[i]*portion %> 
+      </td>
+      <td>
+         <%= ingredient.unit%> 
+      </td>
+   </tr>
+   <% } %> 
+</table>

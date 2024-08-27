@@ -1,0 +1,68 @@
+<form method="post">
+   <table class="table table-striped table-bordered ingredientsTable">
+      <tr>
+         <th>
+            Név
+         </th>
+         <th>
+            Mennyiség
+         </th>
+         <th>
+            Egység
+         </th>
+         <th>
+            Ár/Egység
+         </th>
+         <th>
+            Kalória/Egység
+         </th>
+         <th>
+            &nbsp;
+         </th>
+      </tr>
+      <tbody id="table_body">
+         <% let ingredientsize = (typeof allingredients === 'undefined' ? 0:allingredients.length); %>
+         <% for(let i=0;i<ingredientsize;i++){ const ingredient =allingredients[i]; %> 
+         <tr class="table_row">
+            <td>
+               <%= ingredient.name %> 
+            </td>
+            <td>
+               <%= quantities[i] %> 
+            </td>
+            <td>
+               <%= ingredient.unit %> 
+            </td>
+            <td>
+               <%= ingredient.price %> 
+            </td>
+            <td>
+               <%= ingredient.calories %> 
+            </td>
+            <td style="width:30px;white-space: nowrap">
+               <a href="/recept/deleteingredient/<%=recipe._id%>/<%=ingredient._id%>/<%=quantities[i]%>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+            </td>
+         </tr>
+         <% } %> 
+         <tr class="table_row">
+            <td>
+               <input type="text" class="form-control" id="nev1" name="iname" value="">
+            </td>
+            <td>
+               <input type="number" class="form-control" min="0" id="mennyiseg1" name="iquantity" value="">
+            </td>
+            <td>
+               <input type="text" class="form-control" id="egyseg1" name="iunit" value="">
+            </td>
+            <td>
+               <input type="number" class="form-control" min="0" id="aregyseg1" name="iprice" value="">
+            </td>
+            <td>
+               <input type="number" class="form-control" min="0" id="kaloriaegyseg1" name="icalories" value="">
+            </td>
+            <td style="width:30px;white-space: nowrap">
+               <input type="submit" class="btn btn-success" id="addButton" value="Hozzáad"/>
+            </td>
+         </tr>
+      </tbody>
+   </table>

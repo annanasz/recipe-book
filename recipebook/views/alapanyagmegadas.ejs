@@ -1,0 +1,52 @@
+<%- include('header') -%>
+<%- include('mainmenu') -%>
+<div class="container">
+   <br>
+   <% if(typeof alert !='undefined' ) { %>
+   <div class="alert alert-danger" role="alert">
+      Minden adatát add meg az új hozzávalónak!
+   </div>
+   <% } %>
+   <div class="row">
+      <div class="col-12">
+         <div class="container">
+            <br>
+         </div>
+         <div class="row">
+            <div class="col-2">
+               <h2>
+                  <%= recipe.name %> :
+               </h2>
+            </div>
+            <div class="col-sm">
+               <br>
+               <br>
+               <br>
+               <label>Leírás:</label>
+               <div class="d-flex justify-content-center">
+                  <div class="card" style="width: 40rem;">
+                     <%= recipe.description %>
+                  </div>
+               </div>
+               <br>
+               <div class="d-flex justify-content-center">
+                  <a class="btn btn-success" href="/">Kész</a>
+               </div>
+            </div>
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+            </div>
+         </div>
+         <br>
+         <br>
+         <h6>Adj meg új hozzávalót az utolsó sor kitöltésével:</h6>
+         <%- include('newrecepttable') -%>
+         <br>
+         <h6>Vagy adj hozzá egy már meglévő hozzávalót:</h6>
+         <%- include('alapanyagoktable') -%>
+         </form>
+      </div>
+   </div>
+</div>
+<%- include('footer') -%>

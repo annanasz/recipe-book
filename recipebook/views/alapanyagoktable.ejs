@@ -1,0 +1,46 @@
+<table class="table table-striped table-bordered">
+   <tr>
+      <th>
+         Név
+      </th>
+      <th>
+         Egység
+      </th>
+      <th>
+         Ár/Egység
+      </th>
+      <th>
+         Kalória/Egység
+      </th>
+      <% if(typeof recipe!=="undefined") {%>
+      <th>
+         Mennyiség:
+         <input type="number" class="form-control" name="existingquantity" value="1">
+      </th>
+      <% } %>
+   </tr>
+   <% for(let i = 0; i<ingredients.length;i++) {const ingredient = ingredients[i]; %> 
+   <tr>
+      <td>
+         <%= ingredient.name %> 
+      </td>
+      <td>
+         <%= ingredient.unit %>
+      </td>
+      <td>
+         <%= ingredient.price %> 
+      </td>
+      <td>
+         <%= ingredient.calories %>
+      </td>
+      <td style="width:100px;white-space: normal">
+         <% if(typeof recipe==="undefined") {%>
+         <a href="/alapanyag/edit/<%= ingredients[i]._id %> " class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+         <a href="/alapanyag/delete/<%= ingredients[i]._id %>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a>
+         <% }else { %>
+         <input type="submit" class="btn btn-success" formaction="/recept/addingredient/<%= recipe._id %>/<%= ingredients[i]._id %>" id="addButton" value="Hozzáad"/>
+         <% } %> 
+      </td>
+   </tr>
+   <% } %> 
+</table>

@@ -1,0 +1,40 @@
+<%- include('header') -%>
+<%- include('mainmenu') -%>
+<div class="container">
+   <br>
+   <% if(typeof error!=='undefined' ) {%>
+   <br>
+   <% if(error==="delete" ) {%>
+   <div class="alert alert-danger" role="alert">
+      Nem tudod kitörölni az alapanyagot, benne van egy receptben!
+   </div>
+   <% } %>
+   <% if(error==="edit" ) {%>
+      <div class="alert alert-danger" role="alert">
+         Nem tudod szerkeszteni az alapanyagot, benne van egy receptben!
+      </div>
+      <% } %>
+   <br>
+   <% } %>
+   <div class="row">
+      <div class="col-12">
+         <div class="container"></div>
+         <div class="row">
+            <div class="col-sm">
+               <h2>Alapanyagok:</h2>
+            </div>
+            <div class="col-sm">
+            </div>
+            <div class="col-3">
+               <br>
+               <a href="/alapanyag/new" class="btn btn-block btn-primary">Új alapanyag</a>
+            </div>
+         </div>
+         <br>
+         <%- include('alapanyagoktable') -%>
+      </div>
+      <br />
+   </div>
+</div>
+</div>
+<%- include('footer') -%>

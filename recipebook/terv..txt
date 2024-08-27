@@ -1,0 +1,75 @@
+ReciPies - Recept és alapanyag nyilvántartó rendszer
+
+Statikus oldalak:
+-index.html - A receptek táblázatos nézete, mindegyik törlés, szerkesztés és megtekintés gombbal ellátva, és új recept gomb, kategóriaválasztás
+-receptmegjelenit.html - Egy recept megjelenítése, vissza gomb a receptekhez
+-receptmodositas.html - táblázat az alapanyagoknak, név, kategória, leírás megadása, új alapanyag gomb, mentés és vissza a receptekhez gomb
+-alapanyagok.html - Az alapanyagok táblázatos nézete, mindegyik törlés, szerkesztés gombbal ellátva, és új alapanyag gomb
+-alapanyagmodositas.html - alapanayag adatainak megadása, vissza az alapanyagokhoz és mentés gombok
+
+Routing:
+
+renderMW
+
+middleware/recept/
+	listReceptekMW
+	listReceptekByCatMW
+	getReceptMW
+	saveReceptMW
+	deleteReceptMW
+
+middleware/alapanyag/
+	listAlapanyagokMW
+	getAlapanyagMW
+	saveAlapanyagMW
+	deleteAlapanyagMW
+	
+GET / - index.html
+	listReceptekMW
+	renderMW(index.html)
+
+GET /category?='kategorianev' - megadott kategória alapján szűrve receptek táblázatos megjelenítése 
+	listReceptekByCatMW
+	renderMW(index.html)
+
+GET /recept - átirányít a főoldalra (/)
+	redirect(/)
+
+GET /recept/:receptid - receptmegjelenit.html
+	getReceptMW
+	renderMW(receptmegjelenit.html)
+
+GET,POST /recept/new - receptmodositas.html
+	saveReceptMW
+	saveAlapanyagMW
+	renderMW(receptmodositas.html(new)) - az új recept a beírt adatokkal hozzáadódik az adatbázishoz, az alapanyagok is, ha van olyan ami még nem szerepel az alapanyagok táblában, ha sikeres a hozzáadás, visszatérünk a receptekhez, ha valami hiba van, akkor a beírt értékek megmaradnak
+ 
+
+GET, POST /recept/edit/:receptid - receptmodositas.html
+	getReceptMW
+	saveReceptMW
+	saveAlapanyagMW
+	renderMW(receptmodositas.html(new)) - a módosított recept adatok bekerülnek az adatbázisba is, az új alapanyagok is, amik esetleg eddig nem szerepeltek az alapanyag táblában, ha sikeres a szerkesztés megjelenítjük a már frissített receptet, ha hiba van a hibaüzenet jelenik meg, a beírt adatok megmaradnak a beviteli mezőben. Alapjáraton a beviteli mezők az adatbázisban szereplő adatokkal töltődnek fel.
+
+GET /recept/delete/:receptid - törli a receptet, redirect a receptekhez
+	getReceptMW
+	deleteReceptMW
+	redirect(/)
+
+GET /alapanyag - alapanyagok.html
+	listAlapanyagMW
+	renderMW(alapanyagmegjelenit.html)
+
+GET, POST /alapanyag/new - alapanyagmodositas.html
+	saveAlapanyagMW
+	renderMW(alapanyagmodositas.html)
+	- az új alapanyag a beírt adatokkal hozzáadódik az adatbázishoz, ha sikeres a hozzáadás, átkerülünk az alapanyagok listájához, ha valami hiba van, akkor a beírt értékek megmaradnak
+
+GET, POST /alapanyag/edit/:alapanyagid - alapanyagmodositas.html
+	getAlapanyagMW
+	saveAlapanyagMW
+	renderMW(alapanyagmodositas.html) - a módosított alapanyag adatok bekerülnek az adatbázisba is, ha sikeres a szerkesztés átkerülünk az alapanyagok listájához, ha hiba van a hiba jelenik meg, a beírt adatok megmaradnak a beviteli mezőben. Alapjáraton a beviteli mezők az adatbázisban szereplő adatokkal töltődnek fel.
+
+GET /alapanyag/delete/:alapanyagid - törli az alapanyagot, redirect az alapanyagokhoz
+	getAlapanyagMW
+	redirect(/alapanyag)

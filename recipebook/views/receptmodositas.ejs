@@ -1,0 +1,65 @@
+<%- include('header') -%>
+<%- include('mainmenu') -%>
+<div class="container">
+   <div class="row">
+      <div class="col-12">
+         <br>
+         <h2>Recept <%= typeof recipe === "undefined" ? "hozzáadás":"módosítás" %></h2>
+         <br>
+         <% if(typeof alert != 'undefined') { %> 
+         <% alert.forEach(function(error) { %> 
+         <div class="alert alert-danger" role="alert">
+            <%= error.msg %> 
+         </div>
+         <% }) %>
+         <% } %>  
+         <form method="post" id="recipeform">
+            <div class="card-deck">
+               <div class="card" style="width: 35rem;">
+                  <div class="form-group">
+                     <label for="nev">Név:</label>
+                     <input type="text" class="form-control " id="nev" name="name" value="<%= typeof recipe === "undefined" ? '':recipe.name  %>">
+                     <div class="valid-feedback">
+                        Megfelelő
+                     </div>
+                     <div class="invalid-feedback">
+                        Hiányzó név!
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label for="kategoria">Kategória:  </label>
+                     <select class="form-select" aria-label="Default select example" name="category">
+                        <option value= "reggeli" <%= typeof recipe === "undefined" ? "selected" :(recipe.category === 'reggeli'? "selected":"") %> >Reggeli</option>
+                        <option value="ebed" <%= typeof recipe === "undefined" ? "" :(recipe.category === 'ebed'? "selected":"") %>>Ebéd</option>
+                        <option value="vacsora" <%= typeof recipe === "undefined" ? "" :(recipe.category === 'vacsora'? "selected":"") %>>Vacsora</option>
+                        <option value="desszert" <%= typeof recipe === "undefined" ? "" :(recipe.category === 'desszert'? "selected":"") %>>Desszert</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="card" style="width: 35rem;">
+                  <div class="form-group">
+                     <label for="leiras">Leírás:</label>
+                     <textarea class="form-control" id="leiras" rows="5" form = recipeform name="description"><%= typeof recipe === "undefined" ? '':recipe.description  %></textarea>
+                     <div class="valid-feedback">
+                        Megfelelő
+                     </div>
+                     <div class="invalid-feedback">
+                        Hiányzó leírás!
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <br />
+            <div class="d-flex justify-content-center">
+               <input type="submit" class="btn btn-success" value ="Tovább az alapanyagok megadásához"/>
+               <a class="btn btn-link" href="/">Vissza a receptekhez</a>
+            </div>
+            <br />
+      </div>
+   </div>
+   <br />
+   </form>
+</div>
+</div>
+</div>
+<%- include('footer') -%>

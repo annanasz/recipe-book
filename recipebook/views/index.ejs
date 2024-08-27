@@ -1,0 +1,42 @@
+<%- include('header') -%>
+<%- include('mainmenu') -%>
+<div class="container">
+   <div class="row">
+      <div class="col-12">
+         <div class="container">
+            <br>
+         </div>
+         <div class="row">
+            <div class="col-2">
+               <h2>Receptek:</h2>
+            </div>
+            <div class="col-sm">
+               <br>
+               <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Kategóriák
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                     <li><a href='/category/reggeli'>Reggeli</a></li>
+                     <li><a href='/category/ebed'>Ebéd</a></li>
+                     <li><a href='/category/vacsora'>Vacsora</a></li>
+                     <li><a href='/category/desszert'>Desszert</a></li>
+                     <li><a href="/">Minden</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+            </div>
+            <div class="col-3">
+               <br>
+               <a href="/recept/new" class="btn btn-block btn-primary">Új recept</a>
+            </div>
+         </div>
+         <br>
+         <%- include('receptektable') -%>
+         <br />
+      </div>
+   </div>
+</div>
+<%- include('footer') -%>
